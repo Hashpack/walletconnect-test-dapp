@@ -25,22 +25,7 @@ Core service (`walletconnect.service.ts`) that manages the full wallet lifecycle
 
 ### Iframe Auto-Connect
 
-When this dApp runs inside an iframe, it automatically initiates a WalletConnect session and posts the pairing URI to the parent window — no user interaction required.
-
-The parent frame receives a message like:
-
-```typescript
-window.addEventListener('message', (event) => {
-    if (event.data.type === 'hedera-iframe-connect') {
-        const pairingUri = event.data.pairingString;
-        // Pass to your native wallet SDK
-    }
-});
-```
-
-#### Adding to your own dApp
-
-Copy the `autoConnectWalletConnectInIframe` function and call it once after initializing your wagmi config / AppKit instance:
+When running inside an iframe, call `autoConnectWalletConnectInIframe` after initializing your wagmi config / AppKit instance. It automatically initiates a WalletConnect session and posts the pairing URI to the parent window via `postMessage`.
 
 ```typescript
 import { connect, getConnection, getConnectors, watchConnectors } from '@wagmi/core';
@@ -74,9 +59,7 @@ function autoConnectWalletConnectInIframe(wagmiConfig: Config) {
 }
 ```
 
-**Why `watchConnectors`?** The WalletConnect connector registers asynchronously after AppKit initializes. The function waits for it to appear before attaching the listener.
-
-**Framework-agnostic** — the function only depends on `@wagmi/core`. Works with Angular, React, Vue, or vanilla JS.
+`watchConnectors` is needed because the WalletConnect connector registers asynchronously after AppKit initializes. Only depends on `@wagmi/core`.
 
 ## Running
 
