@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="panels">
+        <!-- Left Panel -->
+        <div class="panel left">
+            <div class="panel-header">
+                <h1>Reown AppKit Testbed</h1>
+            </div>
+            <div class="panel-content">
+                <div *ngIf="walletConnectService.initializing">
+                    <div class="loading-bar"></div>
+                    <p>Initializing...</p>
+                </div>
+
+                <div *ngIf="!walletConnectService.initializing">
+                    <appkit-button></appkit-button>
+                </div>
+
+                <div *ngIf="walletConnectService.connected">
+                    <p>EVM Address: {{ walletConnectService.currentAccount.evmAddress }}</p>
+                    <app-action-buttons></app-action-buttons>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h1>Logger</h1>
+            </div>
+            <div class="panel-content">
+                <app-logger></app-logger>
+            </div>
+        </div>
+    </div>
+</div>
