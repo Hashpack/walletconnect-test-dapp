@@ -1,5 +1,7 @@
 # Hedera ERC dApp Example
 
+**Live demo:** https://hashpack.github.io/walletconnect-test-dapp/walletconnect-erc/
+
 An Angular test dApp for connecting to Hedera wallets via [Reown AppKit](https://docs.reown.com/appkit/overview) and the EVM-compatible (ERC) interface using Wagmi.
 
 ## Stack

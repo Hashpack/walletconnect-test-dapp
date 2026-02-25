@@ -2,6 +2,8 @@
 
 Reference Angular applications demonstrating two approaches to wallet connectivity on Hedera.
 
+**Live demo:** https://hashpack.github.io/walletconnect-test-dapp/
+
 ## Projects
 
 | | [`walletconnect/`](walletconnect/) | [`walletconnect-erc/`](walletconnect-erc/) |

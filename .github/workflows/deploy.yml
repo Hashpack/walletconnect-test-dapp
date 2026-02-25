@@ -28,6 +28,12 @@ jobs:
         working-directory: walletconnect
         run: |
           npm ci
+          node -e "
+            const f = require('fs'), p = './node_modules/@hiero-ledger/sdk/package.json';
+            const pkg = JSON.parse(f.readFileSync(p, 'utf8'));
+            pkg.exports['.'].import = './lib/browser.js';
+            f.writeFileSync(p, JSON.stringify(pkg, null, 2));
+          "
           npx ng build --base-href /walletconnect-test-dapp/walletconnect/
 
       - name: Build walletconnect-erc (EVM)

@@ -1,5 +1,7 @@
 # Hedera WalletConnect dApp Integration
 
+**Live demo:** https://hashpack.github.io/walletconnect-test-dapp/walletconnect/
+
 A reference Angular application demonstrating how to integrate [Hedera WalletConnect](https://github.com/hashgraph/hedera-wallet-connect) into a dApp. This guide walks through the connection lifecycle implemented in [`walletconnect.service.ts`](src/app/services/walletconnect.service.ts).
 
 ## Dependencies
