@@ -11,12 +11,13 @@
                     <p>Initializing...</p>
                 </div>
 
-                <div *ngIf="!walletConnectService.initializing">
-                    <appkit-button></appkit-button>
+                <div *ngIf="!walletConnectService.initializing && !walletConnectService.connected">
+                    <button class="connect-btn" (click)="walletConnectService.connect()">Connect Wallet</button>
                 </div>
 
                 <div *ngIf="walletConnectService.connected">
                     <p>EVM Address: {{ walletConnectService.currentAccount.evmAddress }}</p>
+                    <button class="connect-btn" (click)="walletConnectService.disconnect()">Disconnect</button>
                     <app-action-buttons></app-action-buttons>
                 </div>
             </div>

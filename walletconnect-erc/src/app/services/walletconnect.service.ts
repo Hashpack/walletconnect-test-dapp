@@ -7,7 +7,7 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 import { hedera, hederaTestnet } from '@reown/appkit/networks';
 import type { AppKit } from '@reown/appkit';
 
-import { getConnection, getConnectors, watchConnectors, sendTransaction, signMessage, disconnect, watchConnection } from '@wagmi/core';
+import { connect as wagmiConnect, getConnection, getConnectors, watchConnectors, sendTransaction, signMessage, disconnect, watchConnection } from '@wagmi/core';
 import type { Config } from '@wagmi/core';
 
 @Injectable({
@@ -58,11 +58,14 @@ export class WalletconnectService {
             networks: [hederaTestnet],
             projectId: this.projectId,
             metadata: this.metadata,
+            
             featuredWalletIds: [
                 'a29498d225fa4b13468ff4d6cf4ae0ea4adcbd95f07ce8a843a1dee10b632f3f' // HashPack
             ],
             features: {
                 analytics: true,
+                email: false,
+                socials: false,
             },
         });
 
@@ -88,35 +91,10 @@ export class WalletconnectService {
         this.connected = connection.isConnected;
         this.currentAccount.evmAddress = connection.address ?? null;
 
-        this.watchPairingUri();
-
         this.loggerService.addMessage(new LogMessage('Reown AppKit initialized', ''));
         this.initializing = false;
-    }
 
-    private watchPairingUri() {
-        const attachListener = (connectors: ReturnType<typeof getConnectors>) => {
-            console.log('[watchPairingUri] connectors:', connectors.map(c => c.id));
-            const wcConnector = connectors.find(c => c.id === 'walletConnect');
-            if (!wcConnector) return false;
-            console.log('[watchPairingUri] attached to walletConnect connector');
-            wcConnector.emitter.on('message', ({ type, data }) => {
-                console.log('[watchPairingUri] message event:', type, data);
-                if (type === 'display_uri') {
-                    this.ngZone.run(() => {
-                        window.parent.postMessage({ type: 'hedera-iframe-connect', pairingString: data as string }, '*');
-                    });
-                }
-            });
-            return true;
-        };
-
-        if (!attachListener(getConnectors(this.wagmiConfig))) {
-            console.log('[watchPairingUri] walletConnect connector not found yet, watching...');
-            watchConnectors(this.wagmiConfig, {
-                onChange: (connectors) => attachListener(connectors),
-            });
-        }
+        autoConnectWalletConnectInIframe(this.wagmiConfig);
     }
 
     async connect() {
@@ -163,5 +141,34 @@ export class WalletconnectService {
             this.loggerService.addMessage(new LogMessage('Sign message failed', '', error));
             throw error;
         }
+    }
+}
+
+/**
+ * Auto-connects via WalletConnect when running inside an iframe.
+ * Posts the pairing URI to the parent window for native wallet handling.
+ * Call once after creating your wagmi config / AppKit instance.
+ */
+function autoConnectWalletConnectInIframe(wagmiConfig: Config) {
+    if (window.self === window.top) return;
+    if (getConnection(wagmiConfig).isConnected) return;
+
+    const onConnectors = (connectors: ReturnType<typeof getConnectors>) => {
+        const wc = connectors.find(c => c.id === 'walletConnect');
+        if (!wc) return;
+
+        wc.getProvider().then((provider: any) => {
+            provider.on('display_uri', (uri: string) => {
+                window.parent.postMessage({ type: 'hedera-iframe-connect', pairingString: uri }, '*');
+            });
+            wagmiConnect(wagmiConfig, { connector: wc });
+        });
+    };
+
+    const connectors = getConnectors(wagmiConfig);
+    if (connectors.some(c => c.id === 'walletConnect')) {
+        onConnectors(connectors);
+    } else {
+        watchConnectors(wagmiConfig, { onChange: onConnectors });
     }
 }
