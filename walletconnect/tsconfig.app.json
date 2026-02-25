@@ -4,7 +4,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "@hiero-ledger/sdk": ["./node_modules/@hiero-ledger/sdk/lib/browser.js"]
+    }
   },
   "files": [
     "src/main.ts"
