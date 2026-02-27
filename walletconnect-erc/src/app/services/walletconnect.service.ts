@@ -58,7 +58,6 @@ export class WalletconnectService {
             networks: [hederaTestnet],
             projectId: this.projectId,
             metadata: this.metadata,
-            
             featuredWalletIds: [
                 'a29498d225fa4b13468ff4d6cf4ae0ea4adcbd95f07ce8a843a1dee10b632f3f' // HashPack
             ],
