@@ -26,11 +26,11 @@ export class BatchComponent {
   }
 
   async createBatch() {
-    let acc1339Key = PrivateKey.fromStringED25519("302e020100300506032b657004220420d006e0fac3151c1218e72182ec06a18bc1d71098328daae8caac29b59b029e60")
-    let secondAccountKey = PrivateKey.fromStringED25519("94a7dcaef635249a9d83d325f605f83b8c50b1275e5cfd96234e0cac356e46dd") //0.0.5332767
+    let test1AccountKey = PrivateKey.fromStringED25519("5238e09216af871847e44f9f533ad18b3373bf321294b4d7355bf03cb5b6783f") //0.0.8192348
+    let test2AccountKey = PrivateKey.fromStringED25519("8c7b5a0af8bde522b2ece75a54cab5fd56438f3aaeaa376ed489a89410113edd") //0.0.8192393
 
     let client = await Client.forTestnet();
-    client.setOperator("0.0.1339", acc1339Key)
+    client.setOperator("0.0.1339", test1AccountKey)
 
     // client.setOperator("0.0.5332767", PrivateKey.fromStringED25519("94a7dcaef635249a9d83d325f605f83b8c50b1275e5cfd96234e0cac356e46dd"))
     
@@ -65,7 +65,7 @@ export class BatchComponent {
       .addInnerTransaction(testTransfer)
       .addInnerTransaction(testTransfer2)
       .freezeWith(client)
-      .sign(secondAccountKey)
+      .sign(test2AccountKey)
 
       this.batch.innerTransactions 
   }
