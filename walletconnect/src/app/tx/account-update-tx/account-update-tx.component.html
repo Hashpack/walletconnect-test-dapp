@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Account Update Transaction</h2>
+<mat-dialog-content>
+    <h3>New Public Key - WARNING BE CAREFUL WITH THIS ONE</h3>
+    <input type="text" [(ngModel)]="data.newPublicKey">
+
+    <h3>Automatic Token Associations</h3>
+    <input type="number" min="-1" max="1000" [(ngModel)]="data.maxAutomaticTokenAssociations">
+
+    <h3>Account Memo</h3>
+    <input type="text" [(ngModel)]="data.accountMemo">
+
+    <h3>Transaction Memo</h3>
+    <input type="text" [(ngModel)]="data.transMemo">
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-button (click)="onConfirm()" cdkFocusInitial>OK</button>
+</mat-dialog-actions>

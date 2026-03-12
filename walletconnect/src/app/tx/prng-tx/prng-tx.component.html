@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>pRNG Transaction</h2>
+<mat-dialog-content>
+    <h3>Range (highest number)</h3>
+    <input type="text" [(ngModel)]="range">
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-button (click)="onConfirm()" cdkFocusInitial>OK</button>
+</mat-dialog-actions>

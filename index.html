@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hedera WalletConnect Test dApps</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container { max-width: 720px; padding: 2rem; text-align: center; }
+    h1 { font-size: 1.8rem; margin-bottom: .5rem; color: #fff; }
+    p.subtitle { color: #888; margin-bottom: 2.5rem; }
+    .cards { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .card {
+      flex: 1 1 280px;
+      max-width: 340px;
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: #8b5cf6; transform: translateY(-2px); }
+    .card h2 { font-size: 1.1rem; color: #fff; margin-bottom: .5rem; }
+    .card .tag {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      padding: .25rem .6rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .native .tag { background: #1e3a2f; color: #34d399; }
+    .evm .tag { background: #2a1f3d; color: #a78bfa; }
+    .card p { font-size: .85rem; color: #999; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hedera WalletConnect Test dApps</h1>
+    <p class="subtitle">Choose an integration approach</p>
+    <div class="cards">
+      <a href="walletconnect/" class="card native">
+        <span class="tag">Native Hedera</span>
+        <h2>walletconnect</h2>
+        <p>Hedera SDK transactions via <code>hedera:testnet</code> namespace &mdash; HTS, HCS, multi-party transfers.</p>
+      </a>
+      <a href="walletconnect-erc/" class="card evm">
+        <span class="tag">EVM / Reown AppKit</span>
+        <h2>walletconnect-erc</h2>
+        <p>Standard EVM JSON-RPC via <code>eip155:296</code> &mdash; Solidity contracts, ERC-20/721, Wagmi.</p>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
