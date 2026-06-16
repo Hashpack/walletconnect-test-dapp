@@ -1,0 +1,16 @@
+mat-panel-description {
+    flex: 0 1 auto;
+}
+
+.message-content {
+    pre {
+        overflow: auto;
+        font-size: 12px;
+        line-height: 1.5;
+        font-family: monospace;
+        white-space: pre-wrap;
+        word-break: break-all;
+        padding: 16px;
+        
+    }
+}

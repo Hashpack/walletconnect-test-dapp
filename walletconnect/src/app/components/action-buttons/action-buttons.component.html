@@ -1,0 +1,57 @@
+<mat-accordion>
+  <!-- Transaction Actions -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Transactions
+      </mat-panel-title>
+      <mat-panel-description>
+        Send and manage transactions
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="openTransferModal()">Transfer</button>
+      <button mat-raised-button color="primary" (click)="openPrngModal()">pRNG</button>
+      <button mat-raised-button color="primary" (click)="openAccountUpdateModal()">Account Update</button>
+      <button mat-raised-button color="primary" (click)="openAllowanceApproveModal()">Allowance Approve</button>
+      <button mat-raised-button color="primary" (click)="openAssociateTokenModal()">Associate Token</button>
+      <button mat-raised-button color="primary" (click)="openTransferBatchModal()">Batch</button>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Sign Message
+      </mat-panel-title>
+      <mat-panel-description>
+        Sign messages
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div class="action-buttons">
+      <button mat-raised-button color="accent" (click)="openSignMessageModal()">Sign Message</button>
+    </div>
+  </mat-expansion-panel>
+
+
+
+  <!-- JSON-RPC Actions -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        JSON-RPC
+      </mat-panel-title>
+      <mat-panel-description>
+        Send and manage JSON-RPC requests
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div class="action-buttons">
+      <!-- <button mat-raised-button color="primary">Connect Wallet</button>
+      <button mat-raised-button color="warn">Disconnect</button> -->
+    </div>
+  </mat-expansion-panel>
+
+</mat-accordion>

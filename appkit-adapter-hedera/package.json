@@ -1,0 +1,38 @@
+{
+  "name": "@reown/appkit-adapter-hedera",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./networks": {
+      "types": "./dist/networks.d.ts",
+      "import": "./dist/networks.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@hashgraph/hedera-wallet-connect": "2.0.6",
+    "@hiero-ledger/sdk": "2.79.0"
+  },
+  "peerDependencies": {
+    "@reown/appkit-common": ">=1.8.0",
+    "@reown/appkit-controllers": ">=1.8.0",
+    "@reown/appkit-utils": ">=1.8.0",
+    "@reown/appkit-wallet": ">=1.8.0"
+  },
+  "devDependencies": {
+    "@reown/appkit-common": "^1.8.18",
+    "@reown/appkit-controllers": "^1.8.18",
+    "@reown/appkit-utils": "^1.8.18",
+    "@reown/appkit-wallet": "^1.8.18",
+    "typescript": "~5.7.2"
+  }
+}

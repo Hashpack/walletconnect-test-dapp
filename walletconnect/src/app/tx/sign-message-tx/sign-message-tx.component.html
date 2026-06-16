@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Sign Message</h2>
+<mat-dialog-content>
+    <h3>Message</h3>
+    <input type="text" #messageInput [(ngModel)]="message">
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-button (click)="onConfirm(messageInput)" cdkFocusInitial>OK</button>
+</mat-dialog-actions>

@@ -1,0 +1,74 @@
+<!-- <h2 mat-dialog-title>Allowance Approve Transaction</h2>
+<mat-dialog-content>
+<section>
+    <span>
+        <input type="checkbox" name="hbarAllowance" id="hbarAllowance" [(ngModel)]="data.hbarAllowance">
+        <label for="hbarAllowance">HBAR Allowance</label>
+    </span>
+    <div *ngIf="data.hbarAllowance">
+        <div class="allowance" *ngFor="let allowance of data.hbarAllowances">
+            <span>
+                <label>Amount</label>
+                <input type="text" [(ngModel)]="allowance.amount">
+            </span>
+            <span>
+                <label>Spender Account ID</label>
+                <input type="text" [(ngModel)]="allowance.spenderAccountId">
+            </span>
+        </div>
+        <button (click)="addHbarAllowance()">Add HBAR Allowance</button>
+    </div>
+</section>
+
+<section>
+    <span>
+        <input type="checkbox" name="nftAllowance" id="nftAllowance" [(ngModel)]="data.nftAllowance">
+        <label for="nftAllowance">NFT Allowance</label>
+    </span>
+    <div *ngIf="data.nftAllowance">
+        <div class="allowance" *ngFor="let allowance of data.nftAllowances">
+            <span>
+                <label>Token ID</label>
+                <input type="text" [(ngModel)]="allowance.tokenId">
+            </span>
+            <span>
+                <label>Serial</label>
+                <input type="text" [(ngModel)]="allowance.serial">
+            </span>
+            <span>
+                <label>Spender Account ID</label>
+                <input type="text" [(ngModel)]="allowance.spenderAccountId">
+            </span>
+        </div>
+        <button (click)="addNFTAllowance()">Add NFT Allowance</button>
+    </div>
+</section>
+
+<section>
+    <span>
+        <input type="checkbox" name="tokenAllowance" id="tokenAllowance" [(ngModel)]="data.tokenAllowance">
+        <label for="tokenAllowance">Token Allowance</label>
+    </span>
+    <div *ngIf="data.tokenAllowance">
+        <div class="allowance" *ngFor="let allowance of data.tokenAllowances">
+            <span>
+                <label>Token ID</label>
+                <input type="text" [(ngModel)]="allowance.tokenId">
+            </span>
+            <span>
+                <label>Amount</label>
+                <input type="number" [(ngModel)]="allowance.amount">
+            </span>
+            <span>
+                <label>Spender Account ID</label>
+                <input type="text" [(ngModel)]="allowance.spenderAccountId">
+            </span>
+        </div>
+        <button (click)="addTokenAllowance()">Add token Allowance</button>
+    </div>
+</section>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-button (click)="onConfirm()" cdkFocusInitial>OK</button>
+</mat-dialog-actions> -->

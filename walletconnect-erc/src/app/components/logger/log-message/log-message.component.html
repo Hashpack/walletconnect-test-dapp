@@ -1,0 +1,16 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ message.title }}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{ message.timestamp | date:'mediumTime' }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="message-content">
+      {{ message.message }}
+      <pre *ngIf="message.data">{{ message.data | json }}</pre>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

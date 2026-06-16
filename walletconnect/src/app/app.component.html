@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="panels">
+        <!-- Left Panel -->
+        <div class="panel left">
+            <div class="panel-header">
+                <h1>WalletConnect Testbed</h1>
+            </div>
+            <div class="panel-content">
+                <div *ngIf="walletConnectService.initializing">
+                    <div class="loading-bar"></div>
+                    <p>Initializing...</p>
+                </div>
+
+                <div *ngIf="walletConnectService.sessions.length === 0">
+                    <button class="connect-btn" (click)="walletConnectService.connect()">Connect</button>
+                    <button *ngFor="let extension of walletConnectService.extensions" class="connect-btn" (click)="walletConnectService.connectToExtension(extension)">Connect to {{ extension.name }}</button>
+                </div>
+                
+                <div *ngIf="walletConnectService.sessions.length > 0">
+                    <h3>Connected</h3>
+                    <p>Account ID: {{ walletConnectService.currentAccount.accountId }}</p>
+                    <p>Public Key: {{ walletConnectService.currentAccount.publicKey || 'N/A' }}</p>
+                    <p>EVM Address: {{ walletConnectService.currentAccount.evmAddress || 'N/A' }}</p>
+                    <button class="connect-btn" (click)="walletConnectService.disconnect()">Disconnect</button>
+                </div>
+
+                <app-action-buttons></app-action-buttons>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <h1>Logger</h1>
+            </div>
+            <div class="panel-content">
+                <app-logger></app-logger>
+            </div>
+        </div>
+    </div>
+</div>
