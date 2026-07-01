@@ -7,8 +7,8 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 import { hedera, hederaTestnet } from '@reown/appkit/networks';
 import type { AppKit } from '@reown/appkit';
 
-import { connect as wagmiConnect, getConnection, getConnectors, watchConnectors, sendTransaction, signMessage, disconnect, watchConnection } from '@wagmi/core';
-import type { Config } from '@wagmi/core';
+import { connect as wagmiConnect, getConnection, getConnectors, watchConnectors, sendTransaction, signMessage, signTypedData, disconnect, watchConnection } from '@wagmi/core';
+import type { Config, SignTypedDataParameters } from '@wagmi/core';
 
 @Injectable({
     providedIn: 'root'
@@ -138,6 +138,26 @@ export class WalletconnectService {
             return signature;
         } catch (error) {
             this.loggerService.addMessage(new LogMessage('Sign message failed', '', error));
+            throw error;
+        }
+    }
+
+    async signTypedData(typedData: Pick<SignTypedDataParameters, 'domain' | 'types' | 'primaryType' | 'message'>) {
+        if (!this.connected) {
+            throw new Error('Not connected');
+        }
+
+        this.loggerService.addMessage(new LogMessage('Sign typed data requested', '', typedData));
+
+        try {
+            const signature = await signTypedData(this.wagmiConfig, {
+                account: this.currentAccount.evmAddress as `0x${string}`,
+                ...typedData,
+            } as SignTypedDataParameters);
+            this.loggerService.addMessage(new LogMessage('Typed data signed', '', { signature }));
+            return signature;
+        } catch (error) {
+            this.loggerService.addMessage(new LogMessage('Sign typed data failed', '', error));
             throw error;
         }
     }

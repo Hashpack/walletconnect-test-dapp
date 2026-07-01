@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Sign Typed Data (eth_signTypedData_v4)</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Preset</mat-label>
+        <mat-select [(ngModel)]="selectedPreset" (selectionChange)="onPresetChange()">
+            <mat-option *ngFor="let preset of presets" [value]="preset">{{ preset.label }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>EIP-712 payload (JSON)</mat-label>
+        <textarea matInput rows="16" [(ngModel)]="typedDataJson"></textarea>
+    </mat-form-field>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-button (click)="onConfirm()" cdkFocusInitial>Sign</button>
+</mat-dialog-actions>

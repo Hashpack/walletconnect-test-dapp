@@ -7,6 +7,7 @@ import { PrngTxComponent } from '../../tx/prng-tx/prng-tx.component';
 import { AccountUpdateTxComponent } from '../../tx/account-update-tx/account-update-tx.component';
 import { AllowanceApproveTxComponent } from '../../tx/allowance-approve-tx/allowance-approve-tx.component';
 import { SignMessageTxComponent } from '../../tx/sign-message-tx/sign-message-tx.component';
+import { SignTypedDataTxComponent } from '../../tx/sign-typed-data-tx/sign-typed-data-tx.component';
 import { AssociateTokenTxComponent } from '../../tx/associate-token-tx/associate-token-tx.component';
 import { BatchComponent } from '../../tx/batch/batch.component';
 
@@ -45,6 +46,10 @@ export class ActionButtonsComponent {
 
   openSignMessageModal() {
     this.modalService.openDialog(SignMessageTxComponent);
+  }
+
+  openSignTypedDataModal() {
+    this.modalService.openDialog(SignTypedDataTxComponent);
   }
 
   openAssociateTokenModal() {
